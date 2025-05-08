@@ -13,6 +13,13 @@ Instead, it relies on WirePlumber, which is the default session manager for Pipe
 
 The key motivation for this Polybar module is avoiding the need to install additional dependencies.
 
+## Key features
+
+* Minimal dependencies.
+* Use of IPC instead of polling for efficiency.
+* Ability to change volume and mute/unmute via mouse actions.
+* Headphone vs. speaker output displayed in module.
+
 ## Dependencies
 
 * `wpctl`
