@@ -16,7 +16,10 @@ The key motivation for this Polybar module is avoiding the need to install addit
 ## Dependencies
 
 * `wpctl`
+* `acpid`
 
 On recent Ubuntu systems, `wpctl` and ALSA should already be installed.
 `wpctl` should be available through the package `wireplumber`, which is a dependency of `pipewire-audio`.
 ALSA comprises multiple packages and will be installed along with `pipewire-alsa`.
+
+The ACPI subsystem (via package `acpid`) may need to be installed.
