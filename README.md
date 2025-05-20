@@ -77,6 +77,7 @@ format = <label>
 </details>
 
 Screenshots of the four different module states using icons from Iosevka Nerd Font Mono:
+
 ![speakers unmuted](./screenshots/polybar_pipewire_speakers_unmuted.png)
 ![speakers muted](./screenshots/polybar_pipewire_speakers_muted.png)
 ![headphones unmuted](./screenshots/polybar_pipewire_headphones_unmuted.png)
