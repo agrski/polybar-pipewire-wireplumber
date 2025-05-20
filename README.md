@@ -33,3 +33,45 @@ ALSA comprises multiple packages and will be installed along with `pipewire-alsa
 The ACPI subsystem (via package `acpid`) may need to be installed.
 
 As this module uses IPC, Polybar must be configured to use this with `enable-ipc = true` in your `config.ini`.
+
+## Module
+
+```ini
+[module/pipewire]
+type = custom/ipc
+
+hook-0 = ~/polybar-scripts/pipewire.sh
+hook-1 = ~/polybar-scripts/pipewire.sh mute
+hook-2 = ~/polybar-scripts/pipewire.sh up
+hook-3 = ~/polybar-scripts/pipewire.sh down
+hook-4 = sleep 1 && ~/.config/polybar/scripts/pipewire.sh
+initial = 5
+
+click-left = "#pipewire.hook.1"
+scroll-up = "#pipewire.hook.2"
+scroll-down = "#pipewire.hook.3"
+
+label = " %output% "
+format = <label>
+```
+
+<details>
+    <summary>Explanation of module options</summary>
+
+    This module expects the use of IPC.
+
+    Each of its hooks correspond to options in the bash script `pipewire.sh`.
+    Every invocation of this script will return a string formatted with [lemonbar tags](https://github.com/polybar/polybar/wiki/Formatting#format-tags), but it will also perform the specified action if one is provided.
+    If an action is unrecognised, the script will not error but instead just return the current state of the default audio sink -- be careful with typos!
+
+    The final hook, `hook-4`, is the same as `hook-0` but with an initial sleep so that Polybar can load properly before it is called.
+    Without this, the module will not format properly until an action triggers it to reload.
+    You can change the `sleep 1` to something larger, e.g. `sleep 5`, if you are having difficulty with this.
+
+    The variable `initial` is a one-indexed hook selector to run when Polybar starts, as described in [the docs](https://github.com/polybar/polybar/wiki/Module:-ipc#basic-settings).
+    In this case, `initial = 5` means run `hook-4` on initialisation.
+
+    The script uses lemonbar tags because it is responsible for formatting the full module output -- Polybar is not flexible enough to support one or more script outputs which can then be stitched together with icons and spacing.
+    (Correct me if I am wrong about this!)
+    If you want/need to change the icons, e.g. because they do not render in your chosen font(s), you **must** update the script `pipewire.sh`.
+</details>
