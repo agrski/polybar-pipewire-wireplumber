@@ -9,7 +9,7 @@ This is largely transparent to end users thanks to the `pipewire-pulse` compatib
 However, interacting with the PulseAudio compatibility layer through tools like `pactl` and `pamixer` requires these to be installed, which is no longer automatically the case.
 
 While other Polybar modules continue to assume the use of tools leveraging the PulseAudio API, this module does **not** make this assumption.
-Instead, it relies on WirePlumber, which is the default session manager for PipeWire.
+Instead, it relies on WirePlumber, which is the default session manager for PipeWire, and to a lesser extent ALSA.
 
 The key motivation for this Polybar module is avoiding the need to install additional dependencies.
 
@@ -18,7 +18,7 @@ The key motivation for this Polybar module is avoiding the need to install addit
 * Minimal dependencies.
 * Use of IPC instead of polling for efficiency.
 * Ability to change volume and mute/unmute via mouse actions.
-* Headphone vs. speaker output displayed in module.
+* Output device (headphones or speakers) displayed in module.
 
 ## Dependencies
 
