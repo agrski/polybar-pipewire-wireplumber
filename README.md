@@ -112,6 +112,9 @@ This is done through the use of [lemonbar tags](https://github.com/polybar/polyb
 If the current formatting does not suit your font choices or style preferences, it is necessary to update `pipewire.sh` rather than being able to change module configuration.
 For example, you may need to change the font tags (`{T...}`) to select the appropriate font(s).
 
+There is currently no change in colour when the output is muted or when the volume level is particularly high or low.
+This may be added in the future.
+
 ### Inferring output device
 
 This module, specifically the `pipewire.sh` script, searches in `/proc/asound` for a specific card (`card0` by default) and scrapes information from this.
