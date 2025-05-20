@@ -132,3 +132,7 @@ I am unsure how this would handle wireless devices such as Bluetooth headphones,
 It is not currently possible to switch the output device via a mouse action, e.g. from headphones to speakers.
 It feels like this should be possible, as Gnome has this facility, so any advice would be appreciated!
 I will look into adding this in the future, e.g. via the right-click action.
+
+## Acknowledgements
+
+This repository was inspired by [this Reddit thread](https://www.reddit.com/r/Polybar/comments/mt4f0r/just_switched_to_pipewire_for_audio_is_there_a/), specifically [victortrac's polybar-scripts module](https://github.com/polybar/polybar-scripts/pull/320/files) and the suggestion by `Decvai` to use IPC instead of polling.
