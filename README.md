@@ -101,3 +101,34 @@ The trick to work around this is using the `XDG_RUNTIME_DIR` environment variabl
 If you are **not** running as user ID 1000 (check with `id -u` or similar), you **must** update the handler script.
 
 If you are not interested in using ACPI for detecting the change of output device, you can change the module type to `custom/script` and set a reloading `interval` instead.
+
+## Caveats & considerations
+
+### Formatting
+
+As mentioned in the module explanation section, it is [pipewire.sh](./pipewire.sh) that is responsible for formatting the module outputs -- the volume level and icons.
+This is done through the use of [lemonbar tags](https://github.com/polybar/polybar/wiki/Formatting#format-tags).
+
+If the current formatting does not suit your font choices or style preferences, it is necessary to update `pipewire.sh` rather than being able to change module configuration.
+For example, you may need to change the font tags (`{T...}`) to select the appropriate font(s).
+
+### Inferring output device
+
+This module, specifically the `pipewire.sh` script, searches in `/proc/asound` for a specific card (`card0` by default) and scrapes information from this.
+It uses this to infer whether headphones or speakers are the output device and the mute status.
+This works, but it feels awkward and brittle and inelegant to do so.
+I have not, as yet, been able to find a better source of this information through the commands installed automatically with the `alsa` package.
+If anyone is aware of how to do this more robustly, please do let me know!
+
+### Detecting output device changes
+
+Currently there is a single ACPI trigger defined for events concerning the headphone _jack_.
+I am unsure how this would handle wireless devices such as Bluetooth headphones, but presume it would be necessary to:
+* add a new trigger (trivial),
+* possibly update the ALSA configuration scraping (probably non-trivial).
+
+### Switching output device
+
+It is not currently possible to switch the output device via a mouse action, e.g. from headphones to speakers.
+It feels like this should be possible, as Gnome has this facility, so any advice would be appreciated!
+I will look into adding this in the future, e.g. via the right-click action.
