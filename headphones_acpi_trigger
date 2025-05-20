@@ -1,0 +1,4 @@
+# Place in /etc/acpi/events and update the file location referenced by `action`.
+
+event=jack/headphone.*
+action=/home/USERNAME/polybar-scripts/headphones_acpi_handler.sh
