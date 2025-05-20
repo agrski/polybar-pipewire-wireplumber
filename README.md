@@ -75,3 +75,9 @@ format = <label>
     (Correct me if I am wrong about this!)
     If you want/need to change the icons, e.g. because they do not render in your chosen font(s), you **must** update the script `pipewire.sh`.
 </details>
+
+Screenshots of the four different module states using icons from Iosevka Nerd Font Mono:
+![speakers unmuted](./screenshots/polybar_pipewire_speakers_unmuted.png)
+![speakers muted](./screenshots/polybar_pipewire_speakers_muted.png)
+![headphones unmuted](./screenshots/polybar_pipewire_headphones_unmuted.png)
+![headphones muted](./screenshots/polybar_pipewire_headphones_muted.png)
