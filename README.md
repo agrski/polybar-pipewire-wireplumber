@@ -81,3 +81,9 @@ Screenshots of the four different module states using icons from Iosevka Nerd Fo
 ![speakers muted](./screenshots/polybar_pipewire_speakers_muted.png)
 ![headphones unmuted](./screenshots/polybar_pipewire_headphones_unmuted.png)
 ![headphones muted](./screenshots/polybar_pipewire_headphones_muted.png)
+
+The following mouse gestures are supported:
+* increase & decrease volume with mouse scroll wheel,
+* toggle mute with left mouse click.
+
+You may bind your own behaviours to other mouse actions as per the [Polybar documentation](https://polybar.readthedocs.io/en/stable/user/actions.html).
