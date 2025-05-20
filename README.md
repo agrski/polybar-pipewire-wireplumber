@@ -46,7 +46,10 @@ chmod +x ./pipewire.sh
 ACPI is used to detect when (wired) headphones are plugged or unplugged, and to communicate this to Polybar.
 
 This requires `acpid` to be installed and certain scripts to be placed in the right locations and made executable:
-* [`headphones_acpi_handler.sh`](./headphones_acpi_handler.sh) can be placed anywhere, so long as [`headphones_acpi_trigger`](./headphones_acpi_trigger) is updated to point to the right location; it must be made executable, e.g. with `chmod +x headphones_acpi_handler.sh`.
+* [`headphones_acpi_handler.sh`](./headphones_acpi_handler.sh) can be placed anywhere, so long as [`headphones_acpi_trigger`](./headphones_acpi_trigger) is updated to point to the right location; it must be made executable, e.g. with:
+    ```bash
+    chmod +x headphones_acpi_handler.sh
+    ```
 * [`headphones_acpi_trigger`](./headphones_acpi_trigger) should be copied to the directory `/etc/acpi/events`; it does not need to be executable.
 
 The trigger filters ACPI events for only those concerning the headphone jack and invokes the handler.
