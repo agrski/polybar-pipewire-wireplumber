@@ -91,8 +91,8 @@ You may bind your own behaviours to other mouse actions as per the [Polybar docu
 
 The use of headphones or speakers is automatically detected, including when they are plugged in or unplugged, and communicated to Polybar using an ACPI trigger.
 This requires `acpid` to be installed and certain scripts to be placed in the right locations and made executable:
-* `headphones_acpi_handler.sh` can be placed anywhere, so long as `headphones_acpi_trigger` is updated to point to the right location; it must be made executable, e.g. with `chmod +x headphones_acpi_handler.sh`.
-* `headphones_acpi_trigger` should be copied to the directory `/etc/acpi/events`; it does not need to be executable.
+* [`headphones_acpi_handler.sh`](./headphones_acpi_handler.sh) can be placed anywhere, so long as [`headphones_acpi_trigger`](./headphones_acpi_trigger) is updated to point to the right location; it must be made executable, e.g. with `chmod +x headphones_acpi_handler.sh`.
+* [`headphones_acpi_trigger`](./headphones_acpi_trigger) should be copied to the directory `/etc/acpi/events`; it does not need to be executable.
 
 The trigger filters ACPI events for only those concerning the headphone jack and invokes the handler.
 The handler uses IPC (`polybar-msg`) to inform all running bars of the headphones being (un)plugged.
