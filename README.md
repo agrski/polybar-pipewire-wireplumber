@@ -34,6 +34,13 @@ The ACPI subsystem (via package `acpid`) may need to be installed.
 
 As this module uses IPC, Polybar must be configured to use this with `enable-ipc = true` in your `config.ini`.
 
+### Installation
+
+The bash script [`pipewire.sh`](./pipewire.sh) should be made executable, e.g. with:
+```bash
+chmod +x ./pipewire.sh
+```
+
 ### ACPI configuration
 
 ACPI is used to detect when (wired) headphones are plugged or unplugged, and to communicate this to Polybar.
