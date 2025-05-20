@@ -34,6 +34,23 @@ The ACPI subsystem (via package `acpid`) may need to be installed.
 
 As this module uses IPC, Polybar must be configured to use this with `enable-ipc = true` in your `config.ini`.
 
+### ACPI configuration
+
+ACPI is used to detect when (wired) headphones are plugged or unplugged, and to communicate this to Polybar.
+
+This requires `acpid` to be installed and certain scripts to be placed in the right locations and made executable:
+* [`headphones_acpi_handler.sh`](./headphones_acpi_handler.sh) can be placed anywhere, so long as [`headphones_acpi_trigger`](./headphones_acpi_trigger) is updated to point to the right location; it must be made executable, e.g. with `chmod +x headphones_acpi_handler.sh`.
+* [`headphones_acpi_trigger`](./headphones_acpi_trigger) should be copied to the directory `/etc/acpi/events`; it does not need to be executable.
+
+The trigger filters ACPI events for only those concerning the headphone jack and invokes the handler.
+The handler uses IPC (`polybar-msg`) to inform all running bars of the headphones being (un)plugged.
+This setup is a bit fiddly because the ACPI daemon runs as root, but Polybar is probably not running as root and `polybar-msg` only works between processes owned by the same user.
+The trick to work around this is using the `XDG_RUNTIME_DIR` environment variable to specify the user information for IPC to work.
+If you are **not** running as user ID 1000 (check with `id -u` or similar), you **must** update the handler script.
+
+If you are not interested in using ACPI for detecting the change of output device, you can ignore the above steps and need not set `enable-ipc = true` in your Polybar config.
+Instead, you could change the module type to `custom/script` and set a reloading `interval`.
+
 ## Module
 
 ```ini
@@ -89,18 +106,7 @@ The following mouse gestures are supported:
 
 You may bind your own behaviours to other mouse actions as per the [Polybar documentation](https://polybar.readthedocs.io/en/stable/user/actions.html).
 
-The use of headphones or speakers is automatically detected, including when they are plugged in or unplugged, and communicated to Polybar using an ACPI trigger.
-This requires `acpid` to be installed and certain scripts to be placed in the right locations and made executable:
-* [`headphones_acpi_handler.sh`](./headphones_acpi_handler.sh) can be placed anywhere, so long as [`headphones_acpi_trigger`](./headphones_acpi_trigger) is updated to point to the right location; it must be made executable, e.g. with `chmod +x headphones_acpi_handler.sh`.
-* [`headphones_acpi_trigger`](./headphones_acpi_trigger) should be copied to the directory `/etc/acpi/events`; it does not need to be executable.
-
-The trigger filters ACPI events for only those concerning the headphone jack and invokes the handler.
-The handler uses IPC (`polybar-msg`) to inform all running bars of the headphones being (un)plugged.
-This setup is a bit fiddly because the ACPI daemon runs as root, but Polybar is probably not running as root and `polybar-msg` only works between processes owned by the same user.
-The trick to work around this is using the `XDG_RUNTIME_DIR` environment variable to specify the user information for IPC to work.
-If you are **not** running as user ID 1000 (check with `id -u` or similar), you **must** update the handler script.
-
-If you are not interested in using ACPI for detecting the change of output device, you can change the module type to `custom/script` and set a reloading `interval` instead.
+The use of headphones or speakers is automatically detected, including when they are plugged in or unplugged.
 
 ## Caveats & considerations
 
